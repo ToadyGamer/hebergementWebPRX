@@ -1,0 +1,287 @@
+ion-content{
+    --background: url(../../assets/background/background.jpg) 0 0/100% 100% no-repeat;
+    font: normal bold 13px/1em Arial, Verdana, Helvetica;
+  }
+
+  ::-webkit-scrollbar {
+    display: none;
+}
+
+  //===MENU START===
+  ion-toolbar {
+  --color: #ffffff;
+  --background: rgba(0, 0, 0, 0.7);
+  height: 6vw;
+  }
+  ion-input{
+  --color: #ffffff;
+  }
+  ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.5);
+
+  font-size: 0.9vw;
+
+  // position: fixed;
+  width: 100%;
+  }
+  li {
+  float: left;
+  }
+  li a, .dropbtn {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 20px 16px;
+  text-decoration: none;
+  }
+  li a:hover, .dropdown:hover .dropbtn {
+  background-color: rgb(222, 0, 0);
+  cursor: pointer;
+  }
+  .dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  }
+  .dropdown-content a {
+  color: white;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+  }
+  .dropdown-content a:hover {background-color: #a2a2a2;}
+  .dropdown:hover .dropdown-content {
+  display: block;
+  }
+  h3{
+  float:right;
+  margin-right: 20px;
+  margin-top: 2.4%;
+  font-size: 1.4vw;
+  }
+  ion-item.item-has-focus {
+  --highlight-background:rgb(255, 0, 0);
+  }
+  //===MENU END===
+
+  //===PAGE DEBUT===
+  .parent {
+    display: grid;
+    grid-template-columns: 0.2fr 1fr 0.2fr 1fr 0.2fr;
+    grid-template-rows: 0.2fr repeat(4, 1fr) 0.2fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 1vw;
+  }
+  .div1 { grid-area: 2 / 2 / 3 / 3; }
+  .div2 { grid-area: 3 / 2 / 4 / 3; }
+  .div3 { grid-area: 4 / 2 / 5 / 3; }
+  .div4 { grid-area: 5 / 2 / 6 / 3; }
+  .div5 { grid-area: 2 / 4 / 3 / 5; }
+  .div6 { grid-area: 3 / 4 / 4 / 5; }
+  .div7 { grid-area: 4 / 4 / 5 / 5; }
+  .div8 { grid-area: 5 / 4 / 6 / 5; }
+  .parent ion-input{
+    font-size: 1.2vw;
+    color: black;
+  }
+  select {
+    background: rgba(0, 0, 0, 0);
+    border-radius: 3px;
+    font-size: 2vw;
+  }
+  option{
+    color: black;
+  }
+  h1{
+    text-align: center;
+    text-decoration: underline;
+    font-size: 1.4vw;
+  }
+  h4{
+    font-size: 1vw;
+  }
+  //===PAGE FIN===
+
+  //===PAGE DEBUT===
+  .parentContent {
+    display: grid;
+    grid-template-columns: 3vw 1fr 3vw;
+    grid-template-rows: 2vw 1fr 2vw;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    width: 100%;
+  }
+  .divContent {
+    grid-area: 2 / 2 / 3 / 3;
+    border-radius: 10px;
+    background-color: rgba($color: #333, $alpha: 0.3);
+  }
+  //===PAGE FIN===
+
+  .parentMain {
+    display: grid;
+    grid-template-columns: 0.2fr 1.2fr 0.2fr 0.8fr 0.2fr;
+    grid-template-rows: 1.4vw 1fr 1.4vw;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+  }
+
+  .div1Main {
+    grid-area: 2 / 2 / 3 / 3;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+  .div2Main {
+    grid-area: 2 / 4 / 3 / 5;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+
+  .parentModify {
+    display: grid;
+    grid-template-columns: 0.2fr 1fr 0.2fr 1fr 0.2fr;
+    grid-template-rows: 0.2fr 4vw 4vw 4vw 4vw 0.2fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 3vw;
+  }
+
+  .div1Modify { grid-area: 2 / 2 / 3 / 3; }
+  .div2Modify { grid-area: 3 / 2 / 4 / 3; }
+  .div3Modify { grid-area: 4 / 2 / 5 / 3; }
+  .div4Modify { grid-area: 5 / 2 / 6 / 3; }
+  .div5Modify { grid-area: 2 / 4 / 3 / 5; }
+  .div6Modify { grid-area: 3 / 4 / 4 / 5; }
+  .div7Modify { grid-area: 4 / 4 / 5 / 5; }
+  .div8Modify { grid-area: 5 / 4 / 6 / 5; }
+
+  .parentPaiement {
+    display: grid;
+    grid-template-columns: 0.2fr 1fr 0.2fr;
+    grid-template-rows: 2vw 4vw 4vw 4vw 3vw 1fr 2vw;
+    grid-column-gap: 0px;
+    grid-row-gap: 1vw;
+  }
+
+  .div1Paiement { grid-area: 2 / 2 / 3 / 3; }
+  .div2Paiement { grid-area: 3 / 2 / 4 / 3; }
+  .div3Paiement { grid-area: 4 / 2 / 5 / 3; }
+  .div4Paiement { grid-area: 5 / 2 / 6 / 3; }
+  .div5Paiement { grid-area: 6 / 2 / 7 / 3; }
+
+  ion-input{
+    height: 100%;
+    font-size: 1.2vw;
+    background: #33333300;
+    border-radius: 3px;
+    color: black;
+  }
+  input{
+    height: 100%;
+    width: 100%;
+    font-size: 1.2vw;
+    background: rgba(0, 0, 0, 0);
+    border-radius: 3px;
+    color: black;
+  }
+  select {
+    background: rgba(0, 0, 0, 0);
+    border-radius: 3px;
+    font-size: 1.2vw;
+    color: black;
+  }
+  option{
+    color: black;
+  }
+
+  //===TABLEAU DEBUT===
+  thead tr {
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 50px;
+  }
+  th, td{
+    width: 130px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    text-align: center;
+  }
+  tbody tr{
+    color: black;
+    height: 30px;
+    background-color: rgba($color: #333, $alpha: 0.1);
+  }
+  tbody tr:nth-child(even){
+    background-color: rgba($color: #333, $alpha: 0.2);
+  }
+  td option{
+    font-size: 1vw;
+  }
+  td select{
+    font-size: 1vw;
+    text-align: center;
+    width: 100%;
+  }
+  //===TABLEAU FIN===
+
+
+
+
+
+
+.parentList {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+}
+
+.div1List { grid-area: 1 / 1 / 2 / 2; }
+.div2List { grid-area: 1 / 2 / 2 / 3; }
+.div3List { grid-area: 1 / 3 / 2 / 4; }
+
+.parentSearch {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+}
+
+.div1Search { grid-area: 1 / 1 / 2 / 2; }
+.div2Search { grid-area: 1 / 2 / 2 / 3; }
+.div3Search { grid-area: 1 / 3 / 2 / 4; }
+
+
+.parent {
+  display: grid;
+  grid-template-columns: 0.1fr 1.4fr 0.1fr 0.8fr 0.1fr;
+  grid-template-rows: 7vw 1fr 1vw;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+}
+
+.div1 {
+  grid-area: 2 / 2 / 3 / 3;
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.8);
+ }
+.div2 {
+  grid-area: 2 / 4 / 3 / 5;
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.8);
+ }
+
+ ion-list ion-item{
+  --ion-item-background:rgba(0, 0, 0, 0);
+  color: black;
+  font-size: 0.9vw;
+}

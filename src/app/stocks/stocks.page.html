@@ -1,0 +1,215 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-img src="assets/icon/logo.png" style="width: 4vw; height: 4vw; margin-top: 1%; margin-left: 1%; float: left;"></ion-img>
+
+    <ion-item style="float: left; margin-left: 3%; margin-top: 1.1%; width: 25vw; height: 4vw; border-radius: 10px;">
+      <ion-label position="floating">Recherche d'un Client</ion-label>
+      <ion-input></ion-input>
+      <ion-icon style="margin-top: 4%; width: 2vw; height: 2vw;" name="search" slot="end"></ion-icon>
+    </ion-item>
+
+    <ion-button href="/" style="float: right; height: 2vw; width: 10vw; margin-right: 2%; margin-top: 1.8%; font: normal bold 0.8vw Arial, Verdana, Helvetica;" color="danger">
+      LOG-OUT
+      <ion-icon slot="end" name="log-out-outline"></ion-icon>
+    </ion-button>
+
+    <h3>{{prenomC}}.{{(nomC)?.substring(0,1)}}</h3>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div style="z-index: 100; position: fixed; top: 0; margin-top: 6%; width: 100%;">
+    <ul>
+      <li><a href="/tableau-de-bord">Tableau de bord<ion-icon style="position: absolute; margin-left: 4px; margin-top: -2px; width: 1vw; height: 1vw;" name="clipboard-outline"></ion-icon>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+      <li class="dropdown">
+        <a class="dropbtn" style="border-bottom: 4px solid red;">Stock<ion-icon style="position: absolute; margin-left: 4px; margin-top: -2px; width: 1vw; height: 1vw;" name="build-outline"></ion-icon>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        <div class="dropdown-content">
+          <a href="/stocks">Liste des stocks</a>
+          <a href="/stock-ajouter">Ajout stock</a>
+          <a href="/quantite-ajouter">Ajout quantité</a>
+        </div>
+      </li>
+      <li class="dropdown" style="overflow: hidden;">
+        <a class="dropbtn">Vente<ion-icon style="position: absolute; margin-left: 4px; margin-top: -2px; width: 1vw; height: 1vw;" name="pricetag-outline"></ion-icon>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        <div class="dropdown-content">
+          <a href="/vente-v">Liste des ventes</a>
+          <a href="/vente-v-ajouter">Ajouter une vente</a>
+        </div>
+      </li>
+      <li class="dropdown">
+        <a class="dropbtn">Réparations<ion-icon style="position: absolute; margin-left: 4px; margin-top: -2px; width: 1vw; height: 1vw;" name="build-outline"></ion-icon>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        <div class="dropdown-content">
+          <a href="/vente-pec">Liste des réparations</a>
+          <a href="/vente-pec-ajouter">Ajouter une réparation</a>
+        </div>
+      </li>
+      <li><a href="/sav">SAV<ion-icon style="position: absolute; margin-left: 4px; margin-top: -2px; width: 1vw; height: 1vw;" name="construct-outline"></ion-icon>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+      <li><a href="/factures">Facture<ion-icon style="position: absolute; margin-left: 4px; margin-top: -2px; width: 1vw; height: 1vw;" name="newspaper-outline"></ion-icon>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+      <li class="dropdown">
+        <a class="dropbtn">Demande<ion-icon style="position: absolute; margin-left: 4px; margin-top: -2px; width: 1vw; height: 1vw;" name="build-outline"></ion-icon>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        <div class="dropdown-content">
+          <a href="/demandes">Liste des demandes</a>
+          <a href="/demande-ajouter">Ajouter une demande</a>
+        </div>
+      </li>
+      <li class="dropdown">
+        <a class="dropbtn">Client<ion-icon style="position: absolute; margin-left: 4px; margin-top: -2px; width: 1vw; height: 1vw;" name="build-outline"></ion-icon>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        <div class="dropdown-content">
+          <a href="/clients">Liste des clients</a>
+          <a href="/client-ajouter">Ajouter un client</a>
+        </div>
+      </li>
+      <li><a href="/chiffre-affaire">Chiffre d'affaire<ion-icon style="position: absolute; margin-left: 4px; margin-top: -2px; width: 1vw; height: 1vw;" name="cash-outline"></ion-icon>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+      <li class="dropdown">
+        <a class="dropbtn">Compte<ion-icon style="position: absolute; margin-left: 4px; margin-top: -2px; width: 1vw; height: 1vw;" name="build-outline"></ion-icon>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        <div class="dropdown-content">
+          <a href="/comptes">Liste des comptes</a>
+          <a href="/compte-ajouter">Ajouter un compte</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="parentDisposition" style="z-index: 50; margin-top: 4%;">
+    <div class="div1Disposition">
+      <ion-button style="margin-right: 2vw; color: rgb(0, 0, 0);" fill="clear" href="/stock-ajouter"><strong>Ajout stock / Ajout rachat&nbsp;</strong><ion-icon style="margin-top: -2px;" name="add-circle-outline"></ion-icon></ion-button>
+      <ion-button style="margin-right: 2vw; color: rgb(0, 0, 0);" fill="clear" href="/quantite-ajouter"><strong>Ajout quantité&nbsp;</strong><ion-icon style="margin-top: -2px;" name="add-circle-outline"></ion-icon></ion-button>
+    </div>
+
+    <div class="div2Disposition" id="caseDisposition">
+      <form [formGroup]="ionicForm" (ngSubmit)="submitForm()">
+        <div class="parentFiltre">
+          <div class="div1Filtre">
+            <ion-input formControlName="libelle_refinterne_ean" label="Libellé / Référence interne / EAN" label-placement="floating" fill="outline"></ion-input>
+          </div>
+          <div class="div2Filtre"> 
+            <select formControlName="rachat" style="height: 100%; width: 100%;">
+              <option value="">Rachat</option>
+              <option value="0">Non</option>
+              <option value="1">Oui</option>
+            </select>
+          </div>
+          <div class="div3Filtre">
+            <select formControlName="categorie" style="height: 100%; width: 100%;" id="selectCategorie">
+              <option value="">Catégorie</option>
+            </select>
+          </div>
+          <div class="div4Filtre">
+            <select formControlName="souscategorie" style="height: 100%; width: 100%;" id="selectSousCategorie">
+              <option value="">Sous Catégorie</option>
+            </select>
+          </div>
+          <div class="div5Filtre">
+            <select formControlName="magasin" style="height: 100%; width: 100%;" id="selectMagasin">
+              <option value="">Magasin</option>
+            </select>
+          </div>
+          <div class="div6Filtre"> 
+            <ion-button type="submit" expand="block" fill="outline" color="light" style="height: 80%; width: 60%; margin-left: auto; margin-right: auto;">Rechercher&nbsp;<ion-icon style="margin-top: -2px;" name="search"></ion-icon></ion-button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="div3Disposition" id="caseDisposition">
+      <div style="width: 94%; margin-left: auto; margin-right: auto; margin-top: 2vw; margin-bottom: 2vw;">
+        <thead>
+          <tr>
+            <th style="width: 14%;">Libellé</th>
+            <th>Référence interne</th>
+            <th style="width: 8%;">EAN</th>
+            <th style="width: 8%;">&nbsp;<div style="background-color: rgba(227, 114, 15, 0.3); width: 90%; height: 100%; margin-left: auto; margin-right: auto; border-radius: 5px; padding-top: 3px; padding-bottom: 3px;">Prix achat/vente hors taxe</div>&nbsp;<div style="background-color: rgba(0, 134, 139, 0.3); width: 90%; height: 100%; margin-left: auto; margin-right: auto; border-radius: 5px; padding-top: 3px; padding-bottom: 3px;">Prix du rachat</div>&nbsp;</th>
+            <th style="width: 7%;">Prix de vente TTC (en €)</th>
+            <th style="width: 5%;">Rachat</th>
+            <ng-container *ngFor="let m of allMagasins;">
+              <th>{{m.villeMagasin}}</th>
+            </ng-container>
+            <th>Catégorie / Sous Catégorie</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+  
+        <tbody>
+          <ng-container *ngFor="let s of allStocks;">
+            <tr *ngIf="1 == 1">
+              <td>{{s.libelleStock}}</td>
+              <td>{{s.refInterneStock}}</td>
+              <td>{{s.EANStock}}</td>
+              <td>
+                <div *ngIf="s.prixUnitaireHorsTaxeStock != 0" style="background-color: rgba(227, 114, 15, 0.3); width: 90%; height: 100%; margin-left: auto; margin-right: auto; border-radius: 5px; padding-top: 3px; padding-bottom: 3px;">{{s.prixUnitaireHorsTaxeStock}}€</div>
+                <div *ngIf="s.prixUnitaireStock != 0" style="margin-top: 1px; background-color: rgba(0, 134, 139, 0.3); width: 90%; height: 100%; margin-left: auto; margin-right: auto; border-radius: 5px; padding-top: 3px; padding-bottom: 3px;">{{s.prixUnitaireStock}}€</div>
+              </td>
+              <!-- <td *ngIf="s.prixUnitaireStock != 0"><div style="background-color: rgba(0, 134, 139, 0.3); width: 90%; height: 100%; margin-left: auto; margin-right: auto; border-radius: 5px; padding-top: 3px; padding-bottom: 3px;">{{s.prixUnitaireStock}}€</div></td> -->
+              <td>{{s.prixTTCStock}}€</td>
+              <td *ngIf="s.rachatStock == 0"><img src="assets/icon/no.png" /></td>
+              <td *ngIf="s.rachatStock == 1"><img src="assets/icon/yes.png" /></td>
+                            
+              <ng-container *ngFor="let q of allQuantites;">
+                <ng-container *ngFor="let m of allMagasins;">
+                  <ng-container *ngIf="q.stock == s.idStock && q.magasin == m.idMagasin">
+                    <th *ngIf="q.nombreQuantite != 0">{{q.nombreQuantite}}</th>
+                    <th *ngIf="q.nombreQuantite == 0" style="color: red;">HORS STOCK</th>
+                  </ng-container>
+                </ng-container>
+              </ng-container>
+              
+
+              <!-- <ng-container *ngFor="let q of allQuantites;">
+                <ng-container *ngFor="let m of allMagasins;">
+                  <ng-container *ngIf="q.stock == s.idStock && q.magasin == m.idMagasin">
+                    <th *ngIf="q.nombreQuantite != 0">{{q.nombreQuantite}}</th>
+                    <th *ngIf="q.nombreQuantite == 0" style="color: red;">HORS STOCK</th>
+                  </ng-container>
+                </ng-container>
+              </ng-container> -->
+
+
+
+
+
+
+              <!-- <td style="width: 15%;">
+                <select>
+                  <ng-container *ngIf="idMagasin == '' || idMagasin == null">
+                    <option>Total = {{s.quantiteTotalStock}}</option>
+                  </ng-container>
+                  <ng-container *ngFor="let q of allQuantites;">
+                    <ng-container *ngIf="idMagasin == '' || idMagasin == null;">
+                      <ng-container *ngIf="s.idStock == q.stock">
+                        <option>{{allMagasins[q.magasin - 1].villeMagasin}} = {{q.nombreQuantite}}</option>
+                      </ng-container>
+                    </ng-container>
+                    <ng-container #elseBlock>
+                      <ng-container *ngIf="s.idStock == q.stock && idMagasin == q.magasin">
+                        <option *ngIf="q.nombreQuantite == 0;">HORS STOCK</option>
+                        <option *ngIf="q.nombreQuantite != 0;">{{allMagasins[q.magasin - 1].villeMagasin}} = {{q.nombreQuantite}}</option>
+                      </ng-container>
+                    </ng-container>
+                  </ng-container>
+                </select>
+              </td> -->
+              <td>
+                <ng-container *ngFor="let c of allCategories;">
+                    <ng-container *ngIf="s.categorie == c.idCategorie">
+                      {{c.libelleCategorie}}
+                    </ng-container>
+                </ng-container>
+                /
+                <ng-container *ngFor="let sc of allSousCategories;">
+                  <ng-container *ngIf="s.sousCategorie == sc.idSousCategorie">
+                    {{sc.libelleSousCategorie}}
+                  </ng-container>
+              </ng-container>
+              </td>
+              <td>
+                <ion-button color="dark" (click)="goStockModifier(s.idStock)" href="/stock-modifier"><ion-icon name="pencil"></ion-icon></ion-button>
+                <ion-button color="danger" (click)="presentAlertDelete(s.idStock)"><ion-icon name="trash-outline"></ion-icon></ion-button>
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </div>
+    </div>
+  </div>
+</ion-content>

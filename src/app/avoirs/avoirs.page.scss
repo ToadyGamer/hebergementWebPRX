@@ -1,0 +1,155 @@
+ion-content{
+    --background: url(../../assets/background/background.jpg) 0 0/100% 100% no-repeat;
+    font: normal bold 13px/1em Arial, Verdana, Helvetica;
+  }
+  
+  //===MENU START===
+  ion-toolbar {
+    --color: #ffffff;
+    --background: rgba(0, 0, 0, 0.7);
+    height: 6vw;
+  }
+  ion-input{
+    --color: #ffffff;
+  }
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.5);
+  
+    font-size: 0.9vw;
+  
+    width: 100%;
+  }
+  li {
+    float: left;
+  }
+  li a, .dropbtn {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 20px 16px;
+    text-decoration: none;
+  }
+  li a:hover, .dropdown:hover .dropbtn {
+    background-color: rgb(222, 0, 0);
+    cursor: pointer;
+  }
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 100;
+  }
+  .dropdown-content a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+  .dropdown-content a:hover{
+    background-color: #a2a2a2;
+  }
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  h3{
+    float:right;
+    margin-right: 20px;
+    margin-top: 2.4%;
+    font-size: 1.4vw;
+  }
+  ion-item.item-has-focus {
+    --highlight-background:rgb(255, 0, 0);
+  }
+  //===MENU END===
+  
+  //===DISPOSITION START===
+  .parentDisposition {
+    display: grid;
+    grid-template-columns: 0.03fr 1fr 0.03fr;
+    grid-template-rows: 1vw 3vw 1vw 6vw 1vw 1fr 1vw;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+  }
+   
+  .div1Disposition { grid-area: 2 / 2 / 3 / 3; }
+  .div2Disposition { grid-area: 4 / 2 / 5 / 3; }
+  .div3Disposition { grid-area: 6 / 2 / 7 / 3; }
+  
+  #caseDisposition{
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+  //===DISPOSITION END===
+  
+  
+  //===FILTRE START===
+  .parentFiltre {
+    display: grid;
+    grid-template-columns: 0.1fr 1fr 0.1fr 1fr 0.1fr;
+    grid-template-rows: 0.1fr repeat(3, 1fr) 0.1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 10px;
+  }
+  .div1Filtre { grid-area: 2 / 2 / 3 / 3; }
+  .div2Filtre { grid-area: 3 / 2 / 4 / 3; }
+  .div3Filtre { grid-area: 4 / 2 / 5 / 3; }
+  .div4Filtre { grid-area: 2 / 4 / 3 / 5; }
+  .div5Filtre { grid-area: 3 / 4 / 4 / 5; }
+  .div6Filtre { grid-area: 4 / 4 / 5 / 5; }
+  .parentFiltre ion-input{
+    color: black;
+    font-size: 1.1vw;
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+  select{
+    color: black;
+    font-size: 1.1vw;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px solid black;
+    border-radius: 4px;
+    padding-left: 10px;
+  }
+  //===FILTRE END===
+  
+  //===TABLEAU DEBUT===
+  thead tr {
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 50px;
+  }
+  th, td{
+    width: 130px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    text-align: center;
+  }
+  tbody tr{
+    color: black;
+    height: 30px;
+    background-color: rgba($color: #333, $alpha: 0.1);
+  }
+  tbody tr:nth-child(even){
+    background-color: rgba($color: #333, $alpha: 0.2);
+  }
+  td option{
+    font-size: 1vw;
+  }
+  td select{
+    font-size: 1vw;
+    text-align: center;
+    width: 100%;
+  }
+  img{
+    width: 2vw;
+    height: 2vw;
+  }
+  //===TABLEAU FIN===
+  
+  h1{
+    color: black;
+    text-align: center;
+  }

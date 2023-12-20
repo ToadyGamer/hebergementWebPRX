@@ -1,0 +1,115 @@
+ion-content{
+  --background: url(../../assets/background/background.jpg) 0 0/100% 100% no-repeat;
+  font: normal bold 13px/1em Arial, Verdana, Helvetica;
+}
+
+//===MENU START===
+ion-toolbar {
+--color: #ffffff;
+--background: rgba(0, 0, 0, 0.7);
+height: 6vw;
+}
+ion-input{
+--color: #ffffff;
+}
+ul {
+list-style-type: none;
+margin: 0;
+padding: 0;
+overflow: hidden;
+background-color: rgba(0, 0, 0, 0.5);
+
+font-size: 0.9vw;
+
+width: 100%;
+}
+li {
+float: left;
+}
+li a, .dropbtn {
+display: inline-block;
+color: white;
+text-align: center;
+padding: 20px 16px;
+text-decoration: none;
+}
+li a:hover, .dropdown:hover .dropbtn {
+background-color: rgb(222, 0, 0);
+cursor: pointer;
+}
+.dropdown-content {
+display: none;
+position: absolute;
+background-color: rgba(0, 0, 0, 0.5);
+box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+z-index: 1;
+}
+.dropdown-content a {
+color: white;
+text-decoration: none;
+display: block;
+text-align: left;
+}
+.dropdown-content a:hover {background-color: #a2a2a2;}
+.dropdown:hover .dropdown-content {
+display: block;
+}
+h3{
+float:right;
+margin-right: 20px;
+margin-top: 2.4%;
+font-size: 1.4vw;
+}
+ion-item.item-has-focus {
+--highlight-background:rgb(255, 0, 0);
+}
+//===MENU END===
+
+//===PAGE DEBUT===
+.parentContent {
+  display: grid;
+  grid-template-columns: 3vw 1fr 3vw;
+  grid-template-rows: 2vw 1fr 2vw;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+
+  color: black;
+}
+.divContent { 
+  grid-area: 2 / 2 / 3 / 3; 
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+//===PAGE FIN===
+
+//===PAGE DEBUT===
+.parent {
+  display: grid;
+  grid-template-columns: 0.2fr 1fr 0.2fr 1fr 0.2fr;
+  grid-template-rows: 0.2fr repeat(3, 1fr) 0.2fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 1vw;
+}
+.div1 { grid-area: 2 / 2 / 3 / 3; }
+.div2 { grid-area: 3 / 2 / 4 / 3; }
+.div3 { grid-area: 4 / 2 / 5 / 3; }
+.div4 { grid-area: 2 / 4 / 3 / 5; }
+.div5 { grid-area: 3 / 4 / 4 / 5; }
+.parent ion-input{
+  font-size: 1.2vw;
+  color: black;
+}
+select {
+  background: rgba(0, 0, 0, 0);
+  border-radius: 3px;
+  font-size: 2vw;
+}
+option{
+  color: black;
+}
+h1{
+  text-align: center;
+  text-decoration: underline;
+}
+//===PAGE FIN===

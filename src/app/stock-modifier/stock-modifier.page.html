@@ -1,0 +1,120 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-img src="assets/icon/logo.png" style="width: 4vw; height: 4vw; margin-top: 1%; margin-left: 1%; float: left;"></ion-img>
+
+    <ion-item style="float: left; margin-left: 3%; margin-top: 1.1%; width: 25vw; height: 4vw; border-radius: 10px;">
+      <ion-label position="floating">Recherche d'un Client</ion-label>
+      <ion-input></ion-input>
+      <ion-icon style="margin-top: 4%; width: 2vw; height: 2vw;" name="search" slot="end"></ion-icon>
+    </ion-item>
+
+    <ion-button href="/" style="float: right; height: 2vw; width: 10vw; margin-right: 2%; margin-top: 1.8%; font: normal bold 0.8vw Arial, Verdana, Helvetica;" color="danger">
+      LOG-OUT
+      <ion-icon slot="end" name="log-out-outline"></ion-icon>
+    </ion-button>
+
+    <h3>{{prenomC}}.{{(nomC)?.substring(0,1)}}</h3>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div style="z-index: 100; position: fixed; top: 0; margin-top: 6%; width: 100%;">
+    <ul>
+      <li><a href="/tableau-de-bord">Tableau de bord<ion-icon style="position: absolute; margin-left: 4px; margin-top: -2px; width: 1vw; height: 1vw;" name="clipboard-outline"></ion-icon>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+      <li class="dropdown">
+        <a class="dropbtn" style="border-bottom: 4px solid red;">Stock<ion-icon style="position: absolute; margin-left: 4px; margin-top: -2px; width: 1vw; height: 1vw;" name="build-outline"></ion-icon>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        <div class="dropdown-content">
+          <a href="/stocks">Liste des stocks</a>
+          <a href="/stock-ajouter">Ajout stock</a>
+          <a href="/quantite-ajouter">Ajout quantité</a>
+        </div>
+      </li>
+      <li class="dropdown" style="overflow: hidden;">
+        <a class="dropbtn">Vente<ion-icon style="position: absolute; margin-left: 4px; margin-top: -2px; width: 1vw; height: 1vw;" name="pricetag-outline"></ion-icon>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        <div class="dropdown-content">
+          <a href="/vente-v">Liste des ventes</a>
+          <a href="/vente-v-ajouter">Ajouter une vente</a>
+        </div>
+      </li>
+      <li class="dropdown">
+        <a class="dropbtn">Réparations<ion-icon style="position: absolute; margin-left: 4px; margin-top: -2px; width: 1vw; height: 1vw;" name="build-outline"></ion-icon>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        <div class="dropdown-content">
+          <a href="/vente-pec">Liste des réparations</a>
+          <a href="/vente-pec-ajouter">Ajouter une réparation</a>
+        </div>
+      </li>
+      <li><a href="/sav">SAV<ion-icon style="position: absolute; margin-left: 4px; margin-top: -2px; width: 1vw; height: 1vw;" name="construct-outline"></ion-icon>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+      <li><a href="/factures">Facture<ion-icon style="position: absolute; margin-left: 4px; margin-top: -2px; width: 1vw; height: 1vw;" name="newspaper-outline"></ion-icon>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+      <li class="dropdown">
+        <a class="dropbtn">Demande<ion-icon style="position: absolute; margin-left: 4px; margin-top: -2px; width: 1vw; height: 1vw;" name="build-outline"></ion-icon>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        <div class="dropdown-content">
+          <a href="/demandes">Liste des demandes</a>
+          <a href="/demande-ajouter">Ajouter une demande</a>
+        </div>
+      </li>
+      <li class="dropdown">
+        <a class="dropbtn">Client<ion-icon style="position: absolute; margin-left: 4px; margin-top: -2px; width: 1vw; height: 1vw;" name="build-outline"></ion-icon>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        <div class="dropdown-content">
+          <a href="/clients">Liste des clients</a>
+          <a href="/client-ajouter">Ajouter un client</a>
+        </div>
+      </li>
+      <li><a href="/chiffre-affaire">Chiffre d'affaire<ion-icon style="position: absolute; margin-left: 4px; margin-top: -2px; width: 1vw; height: 1vw;" name="cash-outline"></ion-icon>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+      <li class="dropdown">
+        <a class="dropbtn">Compte<ion-icon style="position: absolute; margin-left: 4px; margin-top: -2px; width: 1vw; height: 1vw;" name="build-outline"></ion-icon>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        <div class="dropdown-content">
+          <a href="/comptes">Liste des comptes</a>
+          <a href="/compte-ajouter">Ajouter un compte</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="parentContent" style="z-index: 50; margin-top: 4%;">
+    <div class="divContent"> 
+      <div class="parentBloc">
+
+        <div class="divModify">
+          <h1>MODIFICATION</h1>
+          <form [formGroup]="ionicFormModify" (ngSubmit)="submitFormModify()">
+            <ion-input formControlName="libelle" label="Libellé" label-placement="stacked" fill="outline" [(ngModel)]="libelleModify"></ion-input>
+            <ion-input formControlName="refinterne" label="Reférence interne" label-placement="stacked" fill="outline" [(ngModel)]="refInterneModify"></ion-input>
+            <ion-input formControlName="ean" label="EAN" label-placement="stacked" fill="outline" [(ngModel)]="eanModify"></ion-input>
+            <div class="divSelect"> 
+              <select formControlName="categorie" style="height: 100%; width: 100%; font-size: 1vw; " id="selectCategorie" [(ngModel)]="categorieActuel">
+                <option value="">Catégorie</option>
+              </select>
+            </div>
+            <div class="divSelect"> 
+              <select formControlName="souscategorie" style="height: 100%; width: 100%; font-size: 1vw;" id="selectSousCategorie" [(ngModel)]="sousCategorieActuel">
+                <option value="">Sous Catégorie</option>
+              </select>
+            </div>
+            <br>
+            <ion-button type="submit" expand="block" style="height: 80%; width: 60%; margin-left: auto; margin-right: auto; margin-bottom: 3vw; color: rgb(0, 0, 0);" color="light" fill="outline"><strong>MODIFIER&nbsp;</strong><ion-icon style="margin-top: -2px;" name="pencil"></ion-icon></ion-button>
+          </form>
+        </div>
+
+        <div class="divTransfert"> 
+          <h1>TRANSFERT</h1>
+          <form [formGroup]="ionicFormTransfert" (ngSubmit)="submitFormTransfert()">
+            <div class="divSelect"> 
+              <select formControlName="magasinactuel" id="selectMagasinActuel">
+                <option value="">Magasin actuel</option>
+              </select>
+            </div>
+            <div class="divSelect"> 
+              <select formControlName="magasinfutur" id="selectMagasinFutur">
+                <option value="">Magasin futur</option>
+              </select>
+            </div>
+            <ion-input formControlName="nombrestock" label="Stock à déplacer" label-placement="stacked" fill="outline"></ion-input>
+            <br>
+            <ion-button type="submit" expand="block" style="height: 80%; width: 60%; margin-left: auto; margin-right: auto; margin-bottom: 3vw; color: rgb(0, 0, 0);" color="light" fill="outline"><strong>TRANSFERER&nbsp;</strong><ion-icon style="margin-top: -2px;" name="arrow-redo-outline"></ion-icon></ion-button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</ion-content>

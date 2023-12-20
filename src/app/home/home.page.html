@@ -1,0 +1,36 @@
+<ion-content [fullscreen]="true" padding class="background">
+    <div class="parentMain">
+        <div class="divMain"> 
+            <div class="parentLogin">
+                <div class="div1">
+                    <ion-img src="h../../assets/icon/loginIcon.png" style="height: 130px; width: 130px; margin-left: 31%; position: absolute;"></ion-img>
+                </div>
+                <div class="div2">
+                    <form [formGroup]="ionicForm" (ngSubmit)="submitForm()">
+
+                        <br>
+                
+                        <ion-item lines="full" color=" " style="width: 100%; border-radius: 15px;">
+                          <ion-icon slot="start" name="person-outline"></ion-icon>
+                          <ion-label position="floating">Identifiant</ion-label>
+                          <ion-input formControlName="identifiant" type="text"></ion-input>
+                        </ion-item>
+                
+                        <br>
+                
+                        <ion-item lines="full" color=" " style="width: 100%; border-radius: 15px;">
+                          <ion-icon slot="start" name="lock-closed-outline"></ion-icon>
+                          <ion-label position="floating">Password</ion-label>
+                          <ion-input formControlName="password" type="password"></ion-input>
+                        </ion-item>
+                
+                        <br>
+                
+                        <ion-button type="submit" expand="block" style="width: 60%; margin-left: auto; margin-right: auto;">LOGIN</ion-button>
+                
+                      </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</ion-content>

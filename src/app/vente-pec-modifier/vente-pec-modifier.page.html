@@ -1,0 +1,325 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-img src="assets/icon/logo.png" style="width: 4vw; height: 4vw; margin-top: 1%; margin-left: 1%; float: left;"></ion-img>
+
+    <ion-item style="float: left; margin-left: 3%; margin-top: 1.1%; width: 25vw; height: 4vw; border-radius: 10px;">
+      <ion-label position="floating">Recherche d'un Client</ion-label>
+      <ion-input></ion-input>
+      <ion-icon style="margin-top: 4%; width: 2vw; height: 2vw;" name="search" slot="end"></ion-icon>
+    </ion-item>
+
+    <ion-button href="/" style="float: right; height: 2vw; width: 10vw; margin-right: 2%; margin-top: 1.8%; font: normal bold 0.8vw Arial, Verdana, Helvetica;" color="danger">
+      LOG-OUT
+      <ion-icon slot="end" name="log-out-outline"></ion-icon>
+    </ion-button>
+
+    <h3>{{prenomC}}.{{(nomC)?.substring(0,1)}}</h3>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div style="z-index: 100; position: fixed; top: 0; margin-top: 6%; width: 100%;">
+    <ul>
+      <li><a href="/tableau-de-bord">Tableau de bord<ion-icon style="position: absolute; margin-left: 4px; margin-top: -2px; width: 1vw; height: 1vw;" name="clipboard-outline"></ion-icon>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+      <li class="dropdown">
+        <a class="dropbtn">Stock<ion-icon style="position: absolute; margin-left: 4px; margin-top: -2px; width: 1vw; height: 1vw;" name="build-outline"></ion-icon>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        <div class="dropdown-content">
+          <a href="/stocks">Liste des stocks</a>
+          <a href="/stock-ajouter">Ajout stock</a>
+          <a href="/quantite-ajouter">Ajout quantité</a>
+        </div>
+      </li>
+      <li class="dropdown" style="overflow: hidden;">
+        <a class="dropbtn">Vente<ion-icon style="position: absolute; margin-left: 4px; margin-top: -2px; width: 1vw; height: 1vw;" name="pricetag-outline"></ion-icon>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        <div class="dropdown-content">
+          <a href="/vente-v">Liste des ventes</a>
+          <a href="/vente-v-ajouter">Ajouter une vente</a>
+        </div>
+      </li>
+      <li class="dropdown">
+        <a class="dropbtn" style="border-bottom: 4px solid red;">Réparations<ion-icon style="position: absolute; margin-left: 4px; margin-top: -2px; width: 1vw; height: 1vw;" name="build-outline"></ion-icon>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        <div class="dropdown-content">
+          <a href="/vente-pec">Liste des réparations</a>
+          <a href="/vente-pec-ajouter">Ajouter une réparation</a>
+        </div>
+      </li>
+      <li><a href="/sav">SAV<ion-icon style="position: absolute; margin-left: 4px; margin-top: -2px; width: 1vw; height: 1vw;" name="construct-outline"></ion-icon>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+      <li><a href="/factures">Facture<ion-icon style="position: absolute; margin-left: 4px; margin-top: -2px; width: 1vw; height: 1vw;" name="newspaper-outline"></ion-icon>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+      <li class="dropdown">
+        <a class="dropbtn">Demande<ion-icon style="position: absolute; margin-left: 4px; margin-top: -2px; width: 1vw; height: 1vw;" name="build-outline"></ion-icon>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        <div class="dropdown-content">
+          <a href="/demandes">Liste des demandes</a>
+          <a href="/demande-ajouter">Ajouter une demande</a>
+        </div>
+      </li>
+      <li class="dropdown">
+        <a class="dropbtn">Client<ion-icon style="position: absolute; margin-left: 4px; margin-top: -2px; width: 1vw; height: 1vw;" name="build-outline"></ion-icon>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        <div class="dropdown-content">
+          <a href="/clients">Liste des clients</a>
+          <a href="/client-ajouter">Ajouter un client</a>
+        </div>
+      </li>
+      <li><a href="/chiffre-affaire">Chiffre d'affaire<ion-icon style="position: absolute; margin-left: 4px; margin-top: -2px; width: 1vw; height: 1vw;" name="cash-outline"></ion-icon>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+      <li class="dropdown">
+        <a class="dropbtn">Compte<ion-icon style="position: absolute; margin-left: 4px; margin-top: -2px; width: 1vw; height: 1vw;" name="build-outline"></ion-icon>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        <div class="dropdown-content">
+          <a href="/comptes">Liste des comptes</a>
+          <a href="/compte-ajouter">Ajouter un compte</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div id="historique" visible>
+    <h1 style="margin-top: 1.3vw; color: black;">HISTORIQUE</h1>
+    <ion-list [inset]="true" style=" overflow-y: scroll; height: 81%;">
+      <ion-item *ngFor="let h of allHistoriques">
+        <ion-label [style.color]="'black'" class="ion-text-wrap">
+          <h2>{{h.libelleHistorique}}</h2>
+          <h4>{{h.dateHistorique}}</h4>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <div id="client" visible>
+    <h1 style="margin-top: 1.3vw; color: black;">CLIENT</h1>
+    <div style="overflow-y: scroll; height: 81%;">
+      <form [formGroup]="ionicFormClient" (ngSubmit)="submitFormClient()">
+        <br>
+        <ion-input style="height: 2vw; width: 80%; margin-left: 10%;" [(ngModel)]="nomClient" formControlName="nom" label="Nom*" label-placement="floating" fill="outline"></ion-input>
+        <br>
+        <ion-input style="height: 2vw; width: 80%; margin-left: 10%;" [(ngModel)]="prenomClient" formControlName="prenom" label="Prenom" label-placement="floating" fill="outline"></ion-input>
+        <br>
+        <ion-input style="height: 2vw; width: 80%; margin-left: 10%;" [(ngModel)]="telephoneClient" formControlName="telephone" label="Téléphone*" label-placement="floating" fill="outline"></ion-input>
+        <br>
+        <ion-input style="height: 2vw; width: 80%; margin-left: 10%;" [(ngModel)]="mailClient" formControlName="mail" label="Mail*" label-placement="floating" fill="outline"></ion-input>
+        <br>
+        <ion-input style="height: 2vw; width: 80%; margin-left: 10%;" [(ngModel)]="adresseClient" formControlName="adresse" label="Adresse" label-placement="floating" fill="outline"></ion-input>
+        <br>
+        <ion-input style="height: 2vw; width: 80%; margin-left: 10%;" [(ngModel)]="codePostalClient" formControlName="codepostal" label="Code postal*" label-placement="floating" fill="outline"></ion-input>
+        <br>
+        <ion-input style="height: 2vw; width: 80%; margin-left: 10%;" [(ngModel)]="villeClient" formControlName="ville" label="Ville*" label-placement="floating" fill="outline"></ion-input>
+        <br>
+        <ion-input style="height: 2vw; width: 80%; margin-left: 10%;" [(ngModel)]="dateNaissanceClient" formControlName="datenaissance" label="Date de naissance" label-placement="floating" fill="outline"></ion-input>
+        <br>
+        <ion-button type="submit" expand="block" style="height: 2vw; width: 80%; margin-left: 10%; color: rgb(0, 0, 0);" color="light" fill="outline"><strong>Sauvegarder</strong></ion-button>
+      </form>
+    </div>
+  </div>
+
+  <div class="parent">
+    <div class="div1">
+
+      <form [formGroup]="ionicFormList" (ngSubmit)="submitForm()">
+        <div class="parentSearch" style="height: 3vw;" style="margin-left: -13px;">
+          <div class="div1Search">
+              <ion-input formControlName="libelle" label="Libellé / EAN" label-placement="floating" fill="outline" style="height: 100%; margin-top: 8px; color: black; width: 80%; margin-left: 13%; font-size: 1.2vw;"></ion-input>
+          </div>
+          <div class="div2Search">
+            <ng-container *ngFor="let m of allMagasins">
+              <h1 *ngIf="m.idMagasin == magasin" style="color: black;">{{m.villeMagasin}}</h1>
+            </ng-container>
+          </div>
+          <div class="div3Search">
+            <ion-button type="submit" expand="block" style="height: 100%; width: 80%; margin-left: auto; margin-right: auto; margin-top: 8px; color: rgb(0, 0, 0);" color="light" fill="outline"><strong>Rechercher</strong></ion-button>
+          </div>
+        </div>
+        </form>
+
+        <div style="overflow-y: scroll; height: 50%; margin-top: 30px; margin-left: 10px; position: absolute; width: 57%; border: 1pw solid black; float: left;" >
+          <div class="parentList">
+            <div class="div1List">
+              <ng-container *ngFor="let s of allStocks; let i = index;">
+                <ion-card style="height: 12vw; width: 15vw; margin-bottom: 25px;" color="dark" *ngIf="i%2 == 0">
+                  <ion-card-header style="height: 60%;">
+                    <ion-card-title style="font-size: 0.8vw; font-weight: 800;">{{s.libelleStock}}</ion-card-title>
+                    <ion-card-subtitle style="font-size: 0.8vw; font-weight: 600;">EAN : {{s.EANStock}}</ion-card-subtitle>
+                    <ion-card-subtitle style="font-size: 0.8vw; font-weight: 600;">Prix d'achat : {{s.prixUnitaireHorsTaxeStock}}€</ion-card-subtitle>
+                    <ion-card-subtitle style="font-size: 0.8vw; font-weight: 600;">Prix vente : {{s.prixTTCStock}}€</ion-card-subtitle>
+                  </ion-card-header>
+                  <ng-container *ngFor="let q of allQuantites;">
+                    <ng-container *ngIf="s.idStock == q.stock && magasin == q.magasin">
+                      <ng-container *ngIf="q.nombreQuantite >= 1">
+                        <ion-button (click)="addVente(s.idStock, 1)" type="submit" expand="block" style="width: 80%; margin-left: auto; margin-right: auto; color: rgb(0, 0, 0); margin-top: 28px;" color="success" fill="outline"><strong>AJOUTER&nbsp;</strong><ion-icon style="margin-top: -2px;" name="add-circle-outline"></ion-icon></ion-button>
+                      </ng-container>
+                      <ng-container *ngIf="q.nombreQuantite < 1">
+                        <ion-button (click)="addVente(s.idStock, 1)" type="submit" expand="block" style="width: 80%; margin-left: auto; margin-right: auto; color: rgb(0, 0, 0); margin-top: 28px;" color="danger" fill="outline"><strong>AJOUTER&nbsp;</strong><ion-icon style="margin-top: -2px;" name="add-circle-outline"></ion-icon></ion-button>
+                      </ng-container>
+                    </ng-container>
+                  </ng-container>
+                </ion-card>
+              </ng-container>
+
+              <ng-container *ngFor="let m of allModeles; let i = index;">
+                <ion-card *ngIf="i%2 == 0" style="height: 12vw; width: 15vw; margin-bottom: 25px;" color="dark">
+                  <ion-card-header style="height: 60%;">
+                    <ion-card-title style="font-size: 0.8vw; font-weight: 800;">{{m.libelleModele}}</ion-card-title>
+                    <br>
+                    <ion-card-subtitle style="font-size: 0.8vw; font-weight: 600;">Prix d'achat: {{m.prixAchatModele}}€</ion-card-subtitle>
+                    <ion-card-subtitle style="font-size: 0.8vw; font-weight: 600;">Prix vente: {{m.prixVenteModele}}€</ion-card-subtitle>
+                  </ion-card-header>
+                  <ion-button (click)="addVente(m.idModele, 2)" type="submit" expand="block" style="width: 80%; margin-left: auto; margin-right: auto; color: rgb(0, 0, 0); margin-top: 28px;" color="success" fill="outline"><strong>AJOUTER&nbsp;</strong><ion-icon style="margin-top: -2px;" name="add-circle-outline"></ion-icon></ion-button>
+                </ion-card>
+              </ng-container>
+
+              <ng-container *ngFor="let a of allPromotions; let i = index;">
+                <ion-card *ngIf="i%2 == 0" style="height: 12vw; width: 15vw; margin-bottom: 25px;" color="dark">
+                  <ion-card-header style="height: 60%;">
+                    <ion-card-title style="font-size: 0.8vw; font-weight: 800;">{{a.libellePromotion}}</ion-card-title>
+                    <br>
+                    <ion-card-subtitle style="font-size: 0.8vw; font-weight: 600;">Prix : {{a.prixPromotion}}€</ion-card-subtitle>
+                  </ion-card-header>
+                  <ion-button (click)="addVente(a.idPromotion, 3)" type="submit" expand="block" style="width: 80%; margin-left: auto; margin-right: auto; color: rgb(0, 0, 0); margin-top: 28px;" color="success" fill="outline"><strong>AJOUTER&nbsp;</strong><ion-icon style="margin-top: -2px;" name="add-circle-outline"></ion-icon></ion-button>
+                </ion-card>
+              </ng-container>
+            </div>
+            <div class="div2List">
+              <ng-container *ngFor="let s of allStocks; let i = index;">
+                <ion-card style="height: 12vw; width: 15vw; margin-bottom: 25px;" color="dark" *ngIf="i%2 == 1">
+                  <ion-card-header style="height: 60%;">
+                    <ion-card-title style="font-size: 0.8vw; font-weight: 800;">{{s.libelleStock}}</ion-card-title>
+                    <ion-card-subtitle style="font-size: 0.8vw; font-weight: 600;">EAN : {{s.EANStock}}</ion-card-subtitle>
+                    <ion-card-subtitle style="font-size: 0.8vw; font-weight: 600;">Prix d'achat : {{s.prixUnitaireHorsTaxeStock}}€</ion-card-subtitle>
+                    <ion-card-subtitle style="font-size: 0.8vw; font-weight: 600;">Prix vente : {{s.prixTTCStock}}€</ion-card-subtitle>
+                  </ion-card-header>
+                  <ng-container *ngFor="let q of allQuantites;">
+                    <ng-container *ngIf="s.idStock == q.stock && magasin == q.magasin">
+                      <ng-container *ngIf="q.nombreQuantite >= 1">
+                        <ion-button (click)="addVente(s.idStock, 1)" type="submit" expand="block" style="width: 80%; margin-left: auto; margin-right: auto; color: rgb(0, 0, 0); margin-top: 28px;" color="success" fill="outline"><strong>AJOUTER&nbsp;</strong><ion-icon style="margin-top: -2px;" name="add-circle-outline"></ion-icon></ion-button>
+                      </ng-container>
+                      <ng-container *ngIf="q.nombreQuantite < 1">
+                        <ion-button (click)="addVente(s.idStock, 1)" type="submit" expand="block" style="width: 80%; margin-left: auto; margin-right: auto; color: rgb(0, 0, 0); margin-top: 28px;" color="danger" fill="outline"><strong>AJOUTER&nbsp;</strong><ion-icon style="margin-top: -2px;" name="add-circle-outline"></ion-icon></ion-button>
+                      </ng-container>
+                    </ng-container>
+                  </ng-container>
+                </ion-card>
+              </ng-container>
+
+              <ng-container *ngFor="let m of allModeles; let i = index;">
+                <ion-card *ngIf="i%2 == 1" style="height: 12vw; width: 15vw; margin-bottom: 25px;" color="dark">
+                  <ion-card-header style="height: 60%;">
+                    <ion-card-title style="font-size: 0.8vw; font-weight: 800;">{{m.libelleModele}}</ion-card-title>
+                    <br>
+                    <ion-card-subtitle style="font-size: 0.8vw; font-weight: 600;">Prix d'achat: {{m.prixAchatModele}}€</ion-card-subtitle>
+                    <ion-card-subtitle style="font-size: 0.8vw; font-weight: 600;">Prix vente: {{m.prixVenteModele}}€</ion-card-subtitle>
+                  </ion-card-header>
+                  <ion-button (click)="addVente(m.idModele, 2)" type="submit" expand="block" style="width: 80%; margin-left: auto; margin-right: auto; color: rgb(0, 0, 0); margin-top: 28px;" color="success" fill="outline"><strong>AJOUTER&nbsp;</strong><ion-icon style="margin-top: -2px;" name="add-circle-outline"></ion-icon></ion-button>
+                </ion-card>
+              </ng-container>
+
+              <ng-container *ngFor="let a of allPromotions; let i = index;">
+                <ion-card *ngIf="i%2 == 1" style="height: 12vw; width: 15vw; margin-bottom: 25px;" color="dark">
+                  <ion-card-header style="height: 60%;">
+                    <ion-card-title style="font-size: 0.8vw; font-weight: 800;">{{a.libellePromotion}}</ion-card-title>
+                    <br>
+                    <ion-card-subtitle style="font-size: 0.8vw; font-weight: 600;">Prix : {{a.prixPromotion}}€</ion-card-subtitle>
+                  </ion-card-header>
+                  <ion-button (click)="addVente(a.idPromotion, 3)" type="submit" expand="block" style="width: 80%; margin-left: auto; margin-right: auto; color: rgb(0, 0, 0); margin-top: 28px;" color="success" fill="outline"><strong>AJOUTER&nbsp;</strong><ion-icon style="margin-top: -2px;" name="add-circle-outline"></ion-icon></ion-button>
+                </ion-card>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div>
+            <div style="overflow-y: scroll; height: 10vw; float: right; width: 35%; border: 2px solid black; margin-right: 5px; border-radius: 3%; margin-bottom: 10px;">
+              <ion-list style="background-color: rgba(0, 0, 0, 0);" [inset]="true" id="selectVente">
+                <ion-item *ngFor="let item of itemsInCart; let i = index">
+                  <ng-container *ngIf="item.idStock != null">
+                    <ion-label [style.color]="'black'" class="ion-text-wrap">
+                      <h4>{{item.libelleStock}} = {{item.prixTTCStock}}€</h4>
+                      <h4 style="margin-top: 10px;">IMEI : <input style="width: 75%; font-size: 1vw;" type="text" value="{{item.IMEIArticlePECVente}}" #imeiInput (input)="saveIMEIArticle(item, imeiInput.value)"/></h4>
+                    </ion-label>
+                    <ion-button color="danger" (click)="removeVente(i, 1)"><ion-icon name="trash-outline"></ion-icon></ion-button>
+                  </ng-container>
+                  <ng-container *ngIf="item.idModele != null">
+                    <ion-label [style.color]="'black'" class="ion-text-wrap">
+                      <h4>{{item.libelleModele}} = {{item.prixVenteModele}}€</h4>
+                      <h4 style="margin-top: 10px;">IMEI : <input style="width: 75%; font-size: 1vw;" type="text" value="{{item.IMEIArticlePECVente}}" #imeiInput (input)="saveIMEIArticle(item, imeiInput.value)"/></h4>
+                    </ion-label>
+                    <ion-button color="danger" (click)="removeVente(i, 2)"><ion-icon name="trash-outline"></ion-icon></ion-button>
+                  </ng-container>
+                  <ng-container *ngIf="item.idPromotion != null" >
+                    <ion-label [style.color]="'black'" class="ion-text-wrap">
+                      <h4>{{item.libellePromotion}} = {{item.prixPromotion}}€</h4>
+                    </ion-label>
+                    <ion-button color="danger" (click)="removeVente(i, 3)"><ion-icon name="trash-outline"></ion-icon></ion-button>
+                  </ng-container>
+                </ion-item>
+              </ion-list>
+            </div>
+          </div>
+
+          <h1 style="margin-left: 64%; color: black; margin-bottom: 20px;">Total : {{prixTotal}}€ - Restant : {{prixRestant}}€</h1>
+
+          <form [formGroup]="ionicForm" (ngSubmit)="submitFormModify()">
+            <div style="z-index: 10000; width: 30%; float: right; margin-right: 25px; margin-top: -5px;" class="inputInfo">
+              <div>
+                <select formControlName="etat" [(ngModel)]="etatModify" style="height: 2vw; width: 100%; font-size: 1vw; position: relative; padding-left: 10px; font-size: 1.2vw;">
+                  <option *ngFor="let e of allEtats" [value]="e.idEtat">{{e.libelleEtat}}</option>
+                </select>
+              </div>
+              <div style="margin-bottom: 10px; margin-top: 10px;" >
+                <ion-input formControlName="description" [(ngModel)]="descriptionModify" label="Description*" label-placement="floating" fill="outline"></ion-input>
+              </div>
+              <div style="margin-bottom: 10px;">
+                <ion-input style="max-height: 10%;" formControlName="imei" [(ngModel)]="imeiModify" label="IMEI" label-placement="floating" fill="outline"></ion-input>
+              </div>
+            </div>
+            <ion-button (click)="modifyVente()" type="submit" expand="block" style="height: 10%; width: 20%; margin-left: 72%; color: rgb(0, 0, 0);" color="light" fill="outline"><strong>Modifier</strong></ion-button>
+          </form>
+
+        </div>
+
+      </div>
+    <div class="div2">
+      <form [formGroup]="ionicFormPaiement" (ngSubmit)="submitFormPaiement()">
+        <div class="parentPaiement">
+          <div class="div1Paiement">
+            <select (change)="changeReglement()" formControlName="reglement" style="height: 100%; width: 100%; font-size: 1vw;">
+              <option value="">Réglement*</option>
+              <option value="Carte">Carte</option>
+              <option value="Espèce">Espèce</option>
+              <option value="Paiement 3 fois">Paiement en 3 fois</option>
+              <option value="Paiement 4 fois">Paiement en 4 fois</option>
+              <option value="Chèque">Chèque</option>
+              <option value="Avoir">Avoir</option>
+            </select>
+          </div>
+          <div class="div2Paiement" id="prixInput">
+            <ion-input formControlName="prix" label="Prix" label-placement="stacked" fill="outline" style="height: 100%; margin-bottom: 1vw;"></ion-input>
+          </div>
+          <div class="div3Paiement" id="codeInput">
+            <ion-input formControlName="code" label="Code avoir" label-placement="stacked" fill="outline" style="height: 100%;"></ion-input>
+          </div>
+          <div class="div4Paiement">
+            <ion-button type="submit" expand="block" style="height: 100%; width: 60%; margin-left: auto; margin-right: auto; margin-bottom: 2vw; color: rgb(0, 0, 0);" color="light" fill="outline"><strong>AJOUTER&nbsp;</strong><ion-icon style="margin-top: -2px;" name="add-circle-outline"></ion-icon></ion-button>
+          </div>
+          <div class="div5Paiement">
+            <thead>
+              <tr>
+                <th>Réglement</th>
+                <th>Date</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <ng-container *ngFor="let r of allReglementsPECVentes;">
+                <tr *ngIf="1 == 1">
+                  <th>{{r.libelleReglement}} : {{r.prixReglement}}€</th>
+                  <th>{{r.dateReglement}}</th>
+                  <th>
+                    <ion-button *ngIf="r.libelleReglement != 'Avoir' && r.libelleReglement != 'Nouvelle avoir'" color="danger" (click)="presentAlertDelete(r.idReglement)"><ion-icon name="trash-outline"></ion-icon></ion-button>
+                  </th>
+                </tr>
+              </ng-container>
+            </tbody>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</ion-content>
